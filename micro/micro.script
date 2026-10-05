@@ -1,0 +1,87 @@
+# ===================================================================
+# 1. HINTERGRUND INITIALISIEREN
+# ===================================================================
+bg_image = Image("background.png");
+bg_sprite = Sprite(bg_image);
+
+bg_sprite.SetPosition(0, 0, -10000);
+bg_sprite.SetZ(-10000);
+
+
+# ===================================================================
+# 2. PROGRESS FRAMES IN ARRAY LADEN
+# ===================================================================
+# progress-00.png bis progress-32.png = 33 Frames
+total_frames = 33;
+progress_frames = [];
+
+for (i = 0; i < total_frames; i++) {
+  if (i < 10) {
+    progress_frames[i] = Image("progress-0" + i + ".png");
+  } else {
+    progress_frames[i] = Image("progress-" + i + ".png");
+  }
+  progress_frames[i] = progress_frames[i].Scale(1440, 132);
+}
+
+
+# ===================================================================
+# 3. BALKEN-SPRITE INITIALISIEREN
+# ===================================================================
+anim_sprite = Sprite();
+
+frame_width = progress_frames[0].GetWidth();
+frame_height = progress_frames[0].GetHeight();
+
+# Horizontal zentrieren
+#ax = (Window.GetWidth() / 2) - (frame_width / 2);
+ax=0;
+
+# Zunächst sicher sichtbar auf dem 1440x900-Display
+ay = 700;
+
+anim_sprite.SetImage(progress_frames[0]);
+anim_sprite.SetPosition(ax, ay, 10000);
+anim_sprite.SetZ(10000);
+anim_sprite.SetOpacity(1);
+
+
+# ===================================================================
+# 4. ZEITSTEUERUNG & REFRESH-LOOP
+# ===================================================================
+global.time_elapsed = 0;
+
+fun refresh_callback() {
+
+  global.time_elapsed += 0.02;
+
+  # Balken nach 8 Sekunden vollständig
+  boot_duration_target = 8;
+
+  fake_progress = global.time_elapsed / boot_duration_target;
+
+  if (fake_progress > 1)
+    fake_progress = 1;
+
+  frame_index = Math.Int(fake_progress * (total_frames - 1));
+
+  if (frame_index < 0)
+    frame_index = 0;
+
+  if (frame_index >= total_frames)
+    frame_index = total_frames - 1;
+
+  anim_sprite.SetImage(progress_frames[frame_index]);
+}
+
+Plymouth.SetRefreshFunction(refresh_callback);
+
+
+# ===================================================================
+# 5. SYSTEMD CALLBACK
+# ===================================================================
+fun progress_callback(duration, progress) {
+  # künstlicher Zeitfortschritt wird oben gesteuert
+}
+
+Plymouth.SetBootProgressFunction(progress_callback);
