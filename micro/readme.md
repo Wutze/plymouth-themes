@@ -16,10 +16,6 @@ Dieser Wert sollte an die Dauer des eigenen Bootvorgangs angepasst werden. Dazu 
 
 Der Wert stellt keinen echten prozentualen Bootfortschritt dar, sondern dient ausschließlich dazu, die Animation möglichst passend zur tatsächlichen Bootdauer laufen zu lassen.
 
-Diese Dateien nach
-
-/usr/share/plymouth/micro kopieren
-
 ```bash
 micro
 ├── background.png
