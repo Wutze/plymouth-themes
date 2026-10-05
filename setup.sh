@@ -6,14 +6,37 @@ set -e
 # Konfiguration
 # ================================================================
 
-GIT_URL="http://gitlab1.home/micro/plymouth.git"
-
 INSTALL_ROOT="/opt"
 REPO_DIR="${INSTALL_ROOT}/plymouth-themes"
 
 PLYMOUTH_DIR="/usr/share/plymouth/themes"
 GRUB_CONFIG="/etc/default/grub"
 
+echo "Welches Git-Repository soll verwendet werden?"
+echo
+echo "1) gitlab.home"
+echo "2) github.com"
+echo
+
+read -rp "Auswahl [1-2]: " git_choice
+
+case "$git_choice" in
+    1)
+        GIT_URL="http://gitlab1.home/micro/plymouth.git"
+        ;;
+    2)
+        GIT_URL="https://github.com/Wutze/plymouth-themes.git"
+        ;;
+    *)
+        echo "Ungültige Auswahl."
+        exit 1
+        ;;
+esac
+
+echo
+echo "Verwende Repository:"
+echo "  $GIT_URL"
+echo
 
 # ================================================================
 # Root prüfen / Root werden
