@@ -1,6 +1,8 @@
 # Plymouth theme with progress bar
 ## Required libraries/programmes
 
+[🇩🇪 Deutsch](readme.md) | [🇬🇧 English](readme-en.md)
+
 ```bash
 apt install plymouth
 ```

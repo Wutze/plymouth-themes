@@ -1,6 +1,8 @@
 # plymouth Theme mit Ladebalken
 ## benötigte Bibliotheken/Programme
 
+[🇩🇪 Deutsch](readme.md) | [🇬🇧 English](readme-en.md)
+
 ```bash
 apt install plymouth
 ```

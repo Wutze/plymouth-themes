@@ -1,6 +1,7 @@
 
 # Themes for Plymouth
 
+[🇩🇪 Deutsch](readme.md) | [🇬🇧 English](readme-en.md)
 
 I’m publishing my own collection of Plymouth themes that I’m currently using. They’re all designed for a 1920x1080px HD screen resolution. They should also look reasonable on 4K monitors. I haven’t tested them yet, as I don’t have a 4K screen.
 
